@@ -1,19 +1,16 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  SurfTestProject
 //
 //  Created by Lena Vorontsova on 08.02.2023.
 //
 
+import Foundation
 import UIKit
 
-class ViewController: UIViewController {
-
+final class MainViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
-
