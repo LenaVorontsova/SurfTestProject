@@ -47,6 +47,7 @@ final class MainViewController: UIViewController {
     // top view's elements
     private var tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .clear
         return tableView
     }()
     private var imageBackground: UIImageView = {
@@ -66,6 +67,7 @@ final class MainViewController: UIViewController {
         topView.addSubview(imageBackground)
         bottomView.addSubview(sendRequestButton)
         bottomView.addSubview(questionLabel)
+        imageBackground.addSubview(tableView)
         
         bottomView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(Constants.bottomViewTop)
@@ -78,11 +80,9 @@ final class MainViewController: UIViewController {
             $0.bottom.equalTo(self.bottomView.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
         }
-        
         imageBackground.snp.makeConstraints {
             $0.top.bottom.trailing.leading.equalToSuperview()
         }
-        
         sendRequestButton.snp.makeConstraints {
             $0.height.equalTo(Constants.buttonHeight)
             $0.trailing.equalTo(bottomView.safeAreaLayoutGuide.snp.trailing).offset(-Constants.buttonR)
@@ -92,6 +92,10 @@ final class MainViewController: UIViewController {
         questionLabel.snp.makeConstraints {
             $0.trailing.equalTo(sendRequestButton.safeAreaLayoutGuide.snp.leading).offset(-Constants.buttonR)
             $0.top.equalTo(bottomView.safeAreaLayoutGuide.snp.top).offset(Constants.labelHeight)
+        }
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(imageBackground.safeAreaLayoutGuide.snp.top).offset(200)
+            $0.bottom.trailing.leading.equalTo(imageBackground.safeAreaLayoutGuide)
         }
     }
 }
