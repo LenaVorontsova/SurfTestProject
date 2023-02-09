@@ -14,6 +14,8 @@
 		8472DDA52993E73A00BFFB27 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472DDA42993E73A00BFFB27 /* MainPresenter.swift */; };
 		8472DDA72993E74800BFFB27 /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472DDA62993E74800BFFB27 /* MainBuilder.swift */; };
 		8472DDAA2993E78000BFFB27 /* Vocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472DDA92993E78000BFFB27 /* Vocations.swift */; };
+		8472DDAC29951CFE00BFFB27 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472DDAB29951CFE00BFFB27 /* MainTableViewCell.swift */; };
+		8472DDAE2995492200BFFB27 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472DDAD2995492200BFFB27 /* ImageTableViewCell.swift */; };
 		DDD3D1F7E915E11F5D4EC8BE /* Pods_SurfTestProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D22182625143B4968CC1BD /* Pods_SurfTestProject.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		8472DDA42993E73A00BFFB27 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		8472DDA62993E74800BFFB27 /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
 		8472DDA92993E78000BFFB27 /* Vocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vocations.swift; sourceTree = "<group>"; };
+		8472DDAB29951CFE00BFFB27 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		8472DDAD2995492200BFFB27 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,6 @@
 				1A19EA93ECD5AA0338B58DAC /* Pods-SurfTestProject.debug.xcconfig */,
 				57A38FCB2589B460AA863331 /* Pods-SurfTestProject.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -107,6 +110,8 @@
 				8472DDA12993E4D600BFFB27 /* MainViewController.swift */,
 				8472DDA42993E73A00BFFB27 /* MainPresenter.swift */,
 				8472DDA62993E74800BFFB27 /* MainBuilder.swift */,
+				8472DDAB29951CFE00BFFB27 /* MainTableViewCell.swift */,
+				8472DDAD2995492200BFFB27 /* ImageTableViewCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -233,10 +238,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8472DDAE2995492200BFFB27 /* ImageTableViewCell.swift in Sources */,
 				8472DDAA2993E78000BFFB27 /* Vocations.swift in Sources */,
 				8472DDA72993E74800BFFB27 /* MainBuilder.swift in Sources */,
 				8472DD8D2993E35F00BFFB27 /* AppDelegate.swift in Sources */,
 				8472DDA52993E73A00BFFB27 /* MainPresenter.swift in Sources */,
+				8472DDAC29951CFE00BFFB27 /* MainTableViewCell.swift in Sources */,
 				8472DDA22993E4D600BFFB27 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

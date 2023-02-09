@@ -26,6 +26,7 @@ final class MainViewController: UIViewController {
     }()
     private var topView: UIView = {
         let view = UIView()
+        view.backgroundColor = .clear
         return view
     }()
     // bottom view's elements
@@ -48,6 +49,7 @@ final class MainViewController: UIViewController {
     private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
+        tableView.separatorColor = .clear
         return tableView
     }()
     private var imageBackground: UIImageView = {
@@ -57,8 +59,15 @@ final class MainViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
-        configureConstraints()
         super.viewDidLoad()
+        self.view.backgroundColor = .white
+        tableView.delegate = self
+        tableView.dataSource = self
+        configureConstraints()
+        self.tableView.register(MainTableViewCell.self,
+                                forCellReuseIdentifier: MainTableViewCell.identifier)
+        self.tableView.register(ImageTableViewCell.self,
+                                forCellReuseIdentifier: ImageTableViewCell.identifier)
     }
     
     func configureConstraints() {
@@ -67,7 +76,7 @@ final class MainViewController: UIViewController {
         topView.addSubview(imageBackground)
         bottomView.addSubview(sendRequestButton)
         bottomView.addSubview(questionLabel)
-        imageBackground.addSubview(tableView)
+        topView.addSubview(tableView)
         
         bottomView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(Constants.bottomViewTop)
@@ -76,7 +85,7 @@ final class MainViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
         }
         topView.snp.makeConstraints {
-            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            $0.top.equalTo(self.view.snp.top)
             $0.bottom.equalTo(self.bottomView.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
         }
@@ -94,8 +103,38 @@ final class MainViewController: UIViewController {
             $0.top.equalTo(bottomView.safeAreaLayoutGuide.snp.top).offset(Constants.labelHeight)
         }
         tableView.snp.makeConstraints {
-            $0.top.equalTo(imageBackground.safeAreaLayoutGuide.snp.top).offset(200)
-            $0.bottom.trailing.leading.equalTo(imageBackground.safeAreaLayoutGuide)
+            $0.top.equalTo(topView.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.bottom.trailing.leading.equalTo(topView.safeAreaLayoutGuide)
         }
+    }
+}
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageTableViewCell.identifier,
+                                                           for: indexPath) as? ImageTableViewCell else {
+                return UITableViewCell()
+            }
+            return cell
+        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier,
+                                                       for: indexPath) as? MainTableViewCell else {
+            return UITableViewCell()
+        }
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 400
+         return UITableView.automaticDimension
     }
 }
