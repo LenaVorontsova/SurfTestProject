@@ -73,7 +73,7 @@ final class MainViewController: UIViewController {
     func configureConstraints() {
         self.view.addSubview(topView)
         self.view.addSubview(bottomView)
-        topView.addSubview(imageBackground)
+        // topView.addSubview(imageBackground)
         bottomView.addSubview(sendRequestButton)
         bottomView.addSubview(questionLabel)
         topView.addSubview(tableView)
@@ -85,13 +85,13 @@ final class MainViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
         }
         topView.snp.makeConstraints {
-            $0.top.equalTo(self.view.snp.top)
+            $0.top.equalToSuperview()
             $0.bottom.equalTo(self.bottomView.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
         }
-        imageBackground.snp.makeConstraints {
-            $0.top.bottom.trailing.leading.equalToSuperview()
-        }
+//        imageBackground.snp.makeConstraints {
+//            $0.top.bottom.trailing.leading.equalToSuperview()
+//        }
         sendRequestButton.snp.makeConstraints {
             $0.height.equalTo(Constants.buttonHeight)
             $0.trailing.equalTo(bottomView.safeAreaLayoutGuide.snp.trailing).offset(-Constants.buttonR)
@@ -103,7 +103,7 @@ final class MainViewController: UIViewController {
             $0.top.equalTo(bottomView.safeAreaLayoutGuide.snp.top).offset(Constants.labelHeight)
         }
         tableView.snp.makeConstraints {
-            $0.top.equalTo(topView.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.top.equalTo(topView.safeAreaLayoutGuide.snp.top)
             $0.bottom.trailing.leading.equalTo(topView.safeAreaLayoutGuide)
         }
     }
@@ -125,16 +125,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier,
+                                                           for: indexPath) as? MainTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.layer.cornerRadius = 30
+            cell.contentView.clipsToBounds = true
+            return cell
         }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.identifier,
-                                                       for: indexPath) as? MainTableViewCell else {
-            return UITableViewCell()
-        }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 400
-         return UITableView.automaticDimension
+        return 550
+//         return UITableView.automaticDimension
     }
 }

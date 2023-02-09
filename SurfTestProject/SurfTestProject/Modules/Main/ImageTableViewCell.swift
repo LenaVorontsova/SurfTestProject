@@ -11,8 +11,8 @@ import UIKit
 final class ImageTableViewCell: UITableViewCell {
     private lazy var imageBack: UIImageView = {
         var image = UIImageView()
-//        image.image = UIImage(named: "back")
-//        image.contentMode = .scaleAspectFit
+        image.image = UIImage(named: "back")
+        image.contentMode = .redraw
         return image
     }()
     
@@ -31,8 +31,7 @@ final class ImageTableViewCell: UITableViewCell {
         imageBack.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalToSuperview()
-            $0.center.equalToSuperview()
+           
         }
     }
 }

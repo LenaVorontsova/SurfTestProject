@@ -70,7 +70,8 @@ final class MainTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = .white
-        contentView.layer.cornerRadius = 15
+//        contentView.layer.cornerRadius = 20
+//        contentView.clipsToBounds = true
         configureConstraints()
     }
     
