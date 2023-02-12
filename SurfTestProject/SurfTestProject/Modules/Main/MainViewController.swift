@@ -70,6 +70,8 @@ final class MainViewController: UIViewController {
         self.tableView.register(ImageTableViewCell.self,
                                 forCellReuseIdentifier: ImageTableViewCell.identifier)
         sendRequestButton.addTarget(self, action: #selector(showNotification), for: .touchUpInside)
+        sendRequestButton.addTarget(self, action: #selector(holdRelease), for: .touchDown)
+        sendRequestButton.addTarget(self, action: #selector(buttonHeldAndReleased), for: .touchDragExit)
     }
     
     @objc
@@ -87,6 +89,17 @@ final class MainViewController: UIViewController {
         })
         topWindow?.makeKeyAndVisible()
         topWindow?.rootViewController?.present(alert, animated: false, completion: nil)
+        sendRequestButton.backgroundColor = .black
+    }
+    
+    @objc
+    func holdRelease() {
+        sendRequestButton.backgroundColor = .gray
+    }
+    
+    @objc
+    func buttonHeldAndReleased() {
+        sendRequestButton.backgroundColor = .black
     }
     
     func configureConstraints() {
