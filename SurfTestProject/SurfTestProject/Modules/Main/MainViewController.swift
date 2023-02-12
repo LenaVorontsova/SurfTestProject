@@ -55,6 +55,7 @@ final class MainViewController: UIViewController {
     private var imageBackground: UIImageView = {
         var image = UIImageView()
         image.image = UIImage(named: "back")!
+        image.contentMode = .redraw
         return image
     }()
     
@@ -85,7 +86,7 @@ final class MainViewController: UIViewController {
             $0.leading.trailing.equalToSuperview()
         }
         topView.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.bottom.equalTo(self.bottomView.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
         }
@@ -103,7 +104,7 @@ final class MainViewController: UIViewController {
             $0.top.equalTo(bottomView.safeAreaLayoutGuide.snp.top).offset(Constants.labelHeight)
         }
         tableView.snp.makeConstraints {
-            $0.top.equalTo(topView.safeAreaLayoutGuide.snp.top)
+            $0.top.equalTo(topView.snp.top)
             $0.bottom.trailing.leading.equalTo(topView.safeAreaLayoutGuide)
         }
     }
@@ -137,7 +138,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 550
+        return 500
 //         return UITableView.automaticDimension
     }
 }

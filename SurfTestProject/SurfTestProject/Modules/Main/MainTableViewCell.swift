@@ -13,6 +13,7 @@ protocol ReusableView: AnyObject {
 }
 
 final class MainTableViewCell: UITableViewCell {
+    var carouselVC: CarouselViewController
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Стажировка в Surf"
@@ -32,14 +33,14 @@ final class MainTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-    private lazy var buttonF: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .green
-        button.setTitle("ios", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 15
-        return button
-    }()
+//    private lazy var buttonF: UIButton = {
+//        let button = UIButton()
+//        button.backgroundColor = .green
+//        button.setTitle("ios", for: .normal)
+//        button.setTitleColor(.black, for: .normal)
+//        button.layer.cornerRadius = 15
+//        return button
+//    }()
     private lazy var secondLabel: UILabel = {
         let label = UILabel()
         label.text = "Получай стипендию, выстраивай удобный график, работай на современном железе."
@@ -68,12 +69,15 @@ final class MainTableViewCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        self.carouselVC = CarouselViewController()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .white
+        self.contentView.backgroundColor = .white
+//        self.carouselVC = CarouselViewController()
 //        contentView.layer.cornerRadius = 20
 //        contentView.clipsToBounds = true
-        configureConstraints()
+        self.configureConstraints()
     }
+     
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -82,7 +86,7 @@ final class MainTableViewCell: UITableViewCell {
     private func configureConstraints() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(descLabel)
-        contentView.addSubview(buttonF)
+        contentView.addSubview(carouselVC.view)
         contentView.addSubview(secondLabel)
         contentView.addSubview(buttonS)
         contentView.addSubview(buttonT)
@@ -96,9 +100,9 @@ final class MainTableViewCell: UITableViewCell {
             $0.top.equalTo(titleLabel.safeAreaLayoutGuide.snp.bottom).offset(12)
             $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(20)
             $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-20)
-            $0.bottom.equalTo(buttonF.safeAreaLayoutGuide.snp.top).offset(-12)
+            $0.bottom.equalTo(carouselVC.view.safeAreaLayoutGuide.snp.top).offset(-12)
         }
-        buttonF.snp.makeConstraints {
+        carouselVC.view.snp.makeConstraints {
             $0.top.equalTo(descLabel.safeAreaLayoutGuide.snp.bottom).offset(12)
             $0.height.equalTo(44)
             $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(20)
@@ -106,7 +110,7 @@ final class MainTableViewCell: UITableViewCell {
             $0.bottom.equalTo(secondLabel.safeAreaLayoutGuide.snp.top).offset(-12)
         }
         secondLabel.snp.makeConstraints {
-            $0.top.equalTo(buttonF.safeAreaLayoutGuide.snp.bottom).offset(12)
+            $0.top.equalTo(carouselVC.view.safeAreaLayoutGuide.snp.bottom).offset(12)
             $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(20)
             $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-20)
             $0.bottom.equalTo(buttonS.safeAreaLayoutGuide.snp.top).offset(-12)
