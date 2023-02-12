@@ -69,12 +69,29 @@ final class MainViewController: UIViewController {
                                 forCellReuseIdentifier: MainTableViewCell.identifier)
         self.tableView.register(ImageTableViewCell.self,
                                 forCellReuseIdentifier: ImageTableViewCell.identifier)
+        sendRequestButton.addTarget(self, action: #selector(showNotification), for: .touchUpInside)
+    }
+    
+    @objc
+    func showNotification() {
+        var topWindow: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+        topWindow?.rootViewController = MainViewController()
+        topWindow?.windowLevel = UIWindow.Level.alert + 1
+        let alert = UIAlertController(title: "Поздравляем!",
+                                      message: "Ваша заявка успешно отправлена!",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Закрыть",
+                                      style: .cancel) { _ in
+            topWindow?.isHidden = true
+            topWindow = nil
+        })
+        topWindow?.makeKeyAndVisible()
+        topWindow?.rootViewController?.present(alert, animated: false, completion: nil)
     }
     
     func configureConstraints() {
         self.view.addSubview(topView)
         self.view.addSubview(bottomView)
-        // topView.addSubview(imageBackground)
         bottomView.addSubview(sendRequestButton)
         bottomView.addSubview(questionLabel)
         topView.addSubview(tableView)
@@ -90,9 +107,6 @@ final class MainViewController: UIViewController {
             $0.bottom.equalTo(self.bottomView.safeAreaLayoutGuide.snp.top)
             $0.leading.trailing.equalToSuperview()
         }
-//        imageBackground.snp.makeConstraints {
-//            $0.top.bottom.trailing.leading.equalToSuperview()
-//        }
         sendRequestButton.snp.makeConstraints {
             $0.height.equalTo(Constants.buttonHeight)
             $0.trailing.equalTo(bottomView.safeAreaLayoutGuide.snp.trailing).offset(-Constants.buttonR)
