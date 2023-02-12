@@ -33,14 +33,6 @@ final class MainTableViewCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-//    private lazy var buttonF: UIButton = {
-//        let button = UIButton()
-//        button.backgroundColor = .green
-//        button.setTitle("ios", for: .normal)
-//        button.setTitleColor(.black, for: .normal)
-//        button.layer.cornerRadius = 15
-//        return button
-//    }()
     private lazy var secondLabel: UILabel = {
         let label = UILabel()
         label.text = "Получай стипендию, выстраивай удобный график, работай на современном железе."
@@ -72,9 +64,6 @@ final class MainTableViewCell: UITableViewCell {
         self.carouselVC = CarouselViewController()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.backgroundColor = .white
-//        self.carouselVC = CarouselViewController()
-//        contentView.layer.cornerRadius = 20
-//        contentView.clipsToBounds = true
         self.configureConstraints()
     }
      

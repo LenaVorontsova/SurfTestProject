@@ -5,13 +5,14 @@
 //  Created by Lena Vorontsova on 11.02.2023.
 //
 
-import Foundation
 import UIKit
 
+// убрать в контроллер UICollectionViewDelegate, UICollectionViewDataSource
 final class GalaryCollectionView: UICollectionView, UICollectionViewDelegate,
                                   UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    var cells = [UIButton]()
     let numberOfItems = 1000
+    let vocations = ["IOS", "Android", "Design", "QA", "Flutter",
+                     "PM", "Go", "GameDev", "Analytics", "PythonDev"]
     
     init() {
         let layout = UICollectionViewFlowLayout()
@@ -22,14 +23,11 @@ final class GalaryCollectionView: UICollectionView, UICollectionViewDelegate,
         dataSource = self
         register(GalaryCollectionViewCell.self,
                  forCellWithReuseIdentifier: GalaryCollectionViewCell.collectionCellId)
+        backgroundColor = .white
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setCells(cells: [UIButton]) {
-        self.cells = cells
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -42,11 +40,20 @@ final class GalaryCollectionView: UICollectionView, UICollectionViewDelegate,
             for: indexPath) as? GalaryCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.collectionButton = cells[indexPath.row % cells.count]
+        
+        cell.configureCell(text: vocations[indexPath.row % vocations.count])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 71, height: 44)
+        let item = vocations[indexPath.row % vocations.count]
+        let font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        let itemSize = item.size(withAttributes: [.font: font])
+        let size = CGSize(
+            width: itemSize.width.rounded(.up) + 24 + 24,
+            height: itemSize.height.rounded(.up) + 12 + 12
+        )
+        
+        return size
     }
 }
