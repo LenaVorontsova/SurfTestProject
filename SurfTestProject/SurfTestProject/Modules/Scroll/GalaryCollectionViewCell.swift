@@ -11,17 +11,7 @@ import UIKit
 final class GalaryCollectionViewCell: UICollectionViewCell {
     static let collectionCellId = "GalaryCollectionViewCellId"
     
-    lazy var collectionButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(red: 243, green: 243, blue: 245, alpha: 1)
-        button.layer.cornerRadius = 15
-        button.setTitle("IOS", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        return button
-    }()
-    
     private let label: UILabel = {
-        #warning("Вынести в константу")
         let label = UILabel()
         label.font = .systemFont(ofSize: 14, weight: .medium)
         let color = UIColor(
@@ -49,7 +39,6 @@ final class GalaryCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupUI() {
-        #warning("Вынести в константу")
         let color = UIColor(
             red: 243/255,
             green: 243/255,

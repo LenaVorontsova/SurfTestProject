@@ -14,6 +14,7 @@ protocol ReusableView: AnyObject {
 
 final class MainTableViewCell: UITableViewCell {
     var carouselVC: CarouselViewController
+    var secondCollectionVC: SecondCollectionView
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Стажировка в Surf"
@@ -51,17 +52,10 @@ final class MainTableViewCell: UITableViewCell {
         button.layer.cornerRadius = 15
         return button
     }()
-    private lazy var buttonT: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .green
-        button.setTitle("ios", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 15
-        return button
-    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         self.carouselVC = CarouselViewController()
+        self.secondCollectionVC = SecondCollectionView()
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.backgroundColor = .white
         self.configureConstraints()
@@ -77,8 +71,7 @@ final class MainTableViewCell: UITableViewCell {
         contentView.addSubview(descLabel)
         contentView.addSubview(carouselVC.view)
         contentView.addSubview(secondLabel)
-        contentView.addSubview(buttonS)
-        contentView.addSubview(buttonT)
+        contentView.addSubview(secondCollectionVC)
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(contentView.safeAreaLayoutGuide.snp.top).offset(20)
             $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(20)
@@ -102,22 +95,22 @@ final class MainTableViewCell: UITableViewCell {
             $0.top.equalTo(carouselVC.view.safeAreaLayoutGuide.snp.bottom).offset(12)
             $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(20)
             $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-20)
-            $0.bottom.equalTo(buttonS.safeAreaLayoutGuide.snp.top).offset(-12)
+            $0.bottom.equalTo(secondCollectionVC.safeAreaLayoutGuide.snp.top).offset(-12)
         }
-        buttonS.snp.makeConstraints {
+        secondCollectionVC.snp.makeConstraints {
             $0.top.equalTo(secondLabel.safeAreaLayoutGuide.snp.bottom).offset(12)
             $0.height.equalTo(44)
             $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(20)
             $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-20)
-            $0.bottom.equalTo(buttonT.safeAreaLayoutGuide.snp.top).offset(-12)
+//            $0.bottom.equalTo(buttonT.safeAreaLayoutGuide.snp.top).offset(-12)
         }
-        buttonT.snp.makeConstraints {
-            $0.top.equalTo(buttonS.safeAreaLayoutGuide.snp.bottom).offset(12)
-            $0.height.equalTo(44)
-            $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(20)
-            $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-20)
-//            $0.bottom.equalTo(secondLabel.safeAreaLayoutGuide.snp.top).offset(-12)
-        }
+//        buttonT.snp.makeConstraints {
+//            $0.top.equalTo(buttonS.safeAreaLayoutGuide.snp.bottom).offset(12)
+//            $0.height.equalTo(44)
+//            $0.leading.equalTo(contentView.safeAreaLayoutGuide.snp.leading).offset(20)
+//            $0.trailing.equalTo(contentView.safeAreaLayoutGuide.snp.trailing).offset(-20)
+////            $0.bottom.equalTo(secondLabel.safeAreaLayoutGuide.snp.top).offset(-12)
+//        }
     }
 }
 

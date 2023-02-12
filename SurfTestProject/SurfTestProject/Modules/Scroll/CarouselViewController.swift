@@ -9,18 +9,6 @@ import Foundation
 import UIKit
 
 final class CarouselViewController: UIViewController {
-    private lazy var button1: UIButton = {
-        let button = UIButton()
-        button.setTitle(Vocations.Android.rawValue, for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.cornerRadius = 10
-        return button
-    }()
-    var buttons: [UIButton]  {
-        return [self.button1, self.button1, self.button1, self.button1,
-                self.button1, self.button1, self.button1, self.button1,
-                self.button1, self.button1]
-    }
     let vocations = ["IOS", "Android", "Design", "QA", "Flutter",
                      "PM", "Go", "GameDev", "Analytics", "PythonDev"]
     private var gallaryCollectionView = GalaryCollectionView()
